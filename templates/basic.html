@@ -1,0 +1,36 @@
+<html>
+
+<head>
+<h1 style="text-align:center;">Welcome</h1>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ </head>
+ 
+<body>
+    
+	   <div id="chatbox">
+        <p><h2 style="color:blue;text-align:center;">Hi!This is Ticket Resolution Agent</h2></p>
+      </div>
+       <b>Enter the query:</b> <input type="text" name="msg" id="query" placeholder="Query"><input type="button" id="buttonInput" value="Submit query">
+       <!--<p> Message is: <span id = "display_message"></span> </p>-->
+    
+
+<script type = "text/javascript">
+     function myFunction() {
+	      var message=document.getElementById("query").value;
+		  $("#chatbox").append('<h3 style="text-align:right;color:red;">' + message + '</h3>');
+		  document.getElementById('query').scrollIntoView({block: 'start', behavior: 'smooth'})
+		  $.get("/get", { msg: message }).done(function(data) {
+		  /*var data="Agent Solution:"+message*/
+          $("#chatbox").append('<h3 style="text-align:left;color:green;">' + data + '</h3>');
+		  document.getElementById('query').scrollIntoView({block: 'start', behavior: 'smooth'})
+		  });
+	      	
+                          }
+	 $("#buttonInput").click(function() {
+          myFunction();
+        })	
+		
+		
+</script>
+</body>
+</html>
